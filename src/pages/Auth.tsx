@@ -1,18 +1,23 @@
-
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
-import { useToast } from '@/hooks/use-toast';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Phone } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { signIn, signUp, user } = useAuth();
@@ -20,7 +25,7 @@ const AuthPage = () => {
 
   useEffect(() => {
     if (user) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     }
   }, [user, navigate]);
 
@@ -29,7 +34,7 @@ const AuthPage = () => {
     setLoading(true);
 
     try {
-      const { error } = isLogin 
+      const { error } = isLogin
         ? await signIn(email, password)
         : await signUp(email, password);
 
@@ -69,13 +74,12 @@ const AuthPage = () => {
             <span className="text-xl font-bold text-gray-900">CallBot AI</span>
           </div>
           <CardTitle className="text-2xl">
-            {isLogin ? 'Welcome back' : 'Create your account'}
+            {isLogin ? "Welcome back" : "Create your account"}
           </CardTitle>
           <CardDescription>
-            {isLogin 
-              ? 'Sign in to your CallBot AI account' 
-              : 'Start your 7-day free trial today'
-            }
+            {isLogin
+              ? "Sign in to your CallBot AI account"
+              : "Start your 7-day free trial today"}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -104,7 +108,11 @@ const AuthPage = () => {
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
+              {loading
+                ? "Processing..."
+                : isLogin
+                ? "Sign In"
+                : "Create Account"}
             </Button>
           </form>
           <div className="mt-4 text-center">
@@ -113,10 +121,9 @@ const AuthPage = () => {
               onClick={() => setIsLogin(!isLogin)}
               className="text-blue-600 hover:underline"
             >
-              {isLogin 
-                ? "Don't have an account? Sign up" 
-                : "Already have an account? Sign in"
-              }
+              {isLogin
+                ? "Don't have an account? Sign up"
+                : "Already have an account? Sign in"}
             </button>
           </div>
         </CardContent>
