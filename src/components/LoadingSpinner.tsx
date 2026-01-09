@@ -1,4 +1,3 @@
-
 export const LoadingSpinner = ({ size = 'default' }: { size?: 'sm' | 'default' | 'lg' }) => {
   const sizeClasses = {
     sm: 'w-4 h-4',
