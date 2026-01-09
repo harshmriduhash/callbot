@@ -20,7 +20,6 @@ export const VoiceAIDemo = ({ onCallStart, onCallEnd }: VoiceAIDemoProps) => {
   const [voiceId, setVoiceId] = useState('');
   const [isConfigured, setIsConfigured] = useState(false);
   const [simulatedCallSid, setSimulatedCallSid] = useState('');
-
   const voiceAI = useVoiceAI({
     voiceProvider,
     apiKey,
