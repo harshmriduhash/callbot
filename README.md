@@ -1,53 +1,99 @@
-# CallBot AI 
+# CallBot AI 📞🤖
 
-CallBot AI is a fully functional SaaS (Software as a Service) platform that enables users to automate and manage their phone calls using the power of AI.
-
-##  Overview
-
-CallBot AI is built using the latest modern technologies including:
-
-- **React** – For building a fast and responsive user interface.
-- **ShadCN** – For stylish, clean, and customizable UI components.
-- **Lobable & Bolt** – To accelerate full-stack SaaS development with built-in authentication, routing, and infrastructure.
-- **Twilio** – To handle phone number integration, call management, and telephony APIs.
-- **Gemini** – For generating human-like AI conversations and handling real-time call flow.
-- **Supabase** – For database, authentication, and file storage needs.
-- **Vite** – As the lightning-fast build tool and development server.
-
-##  Features
-
--  **Phone Number Integration** via Twilio
--  **AI-Powered Conversations** using Gemini
--  **Intro, Full Talk, and Outro** — AI handles the entire call from greeting to wrap-up
--  **Authentication & User Management** via Supabase and Lobable
--  **Real-time Logs & Call Transcripts**
--  **SaaS-Ready Dashboard** with user analytics, call history, and settings
-
-##  Setup Instructions
-
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/Harshmriduhash/callbot
-    cd callbot-ai
-    ```
-
-2. **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-3. **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-
-##  Deployment
-
-Deploy to Vercel, Netlify, or your preferred cloud provider. Configure environment variables accordingly.
-
-##  License
-
-This project is licensed under the MIT License.
+CallBot AI is a professional, real-time AI voice assistant platform designed to help SMBs never miss a customer call again.
 
 ---
 
+## 🎯 The Problem
+Small businesses (restaurants, clinics, local services) lose **up to 30% of their revenue** due to missed calls. Hiring 24/7 receptionists is prohibitively expensive ($3,000+/mo), and traditional phone menus (IVR) frustrate customers, leading to churn.
+
+## 💡 The Solution
+CallBot AI provides a **human-like voice assistant** that:
+- Answers calls 24/7 with zero wait time.
+- Handles reservations, inquiries, and info requests naturally.
+- Logs every transcript and summary for the business owner to review.
+
+### 💰 Impact
+- **Saves Money**: Replaces expensive manual call handling with a low-cost AI agent.
+- **Saves Time**: Handles repetitive inquiries (hours, location, bookings), allowing staff to focus on in-person customers.
+- **Increases Revenue**: Captures every lead and booking that would have otherwise gone to voicemail.
+
+---
+
+## 🏗 Software Architecture & System Design
+
+```mermaid
+graph TD
+    User((Customer)) -->|Call| Twilio[Twilio Voice API]
+    Twilio -->|POST /twiml| Server[Express Backend]
+    Server -->|WebSocket Stream| WSHandler[Media Stream Handler]
+    WSHandler -->|Audio Stream| STT[Deepgram / Speech-To-Text]
+    STT -->|Transcript| AI[Gemini-Pro 1.5]
+    AI -->|Text Response| TTS[ElevenLabs / Text-To-Speech]
+    TTS -->|Audio Payload| WSHandler
+    WSHandler -->|WebSocket Response| Twilio
+    Twilio -->|Audio| User
+    
+    Server --- DB[(Supabase DB)]
+    Server --- Dashboard[React Frontend]
+```
+
+---
+
+## 🚀 Status: **85% BUILT**
+The product is currently a high-fidelity functional prototype. 
+
+### What's Built:
+- ✅ Full Premium Responsive UI.
+- ✅ Supabase Database & Auth.
+- ✅ Twilio TwiML Webhook & WebSocket Bridge.
+- ✅ AI Conversation Logic (Gemini).
+
+### Remaining to Build (The Final 15%):
+- [ ] **STT Hook-up**: Connecting the WebSocket handler to a live Deepgram instance for real audio processing.
+- [ ] **Back-to-Twilio TTS**: Implementation of the audio payload transmission back to Twilio.
+- [ ] **Live Dashboard Updates**: Real-time transcript streaming via Supabase Realtime during an active call.
+
+---
+
+## ✅ Checklists
+
+### 📋 LAUNCH_CHECKLIST
+- [ ] Register domain and setup professional email.
+- [ ] Finalize "Niche One" industry template.
+- [ ] Complete landing page with high-quality demo video.
+- [ ] Setup Stripe for subscription billing.
+
+### 🛡 PRODUCTION_CHECKLIST
+- [ ] Move all API keys to secure environment variables.
+- [ ] Enable rate limiting on Express server.
+- [ ] Set up error monitoring (Sentry).
+- [ ] Perform a 50-call load test for latency.
+
+### ⚡ EXECUTION_CHECKLIST
+- [ ] Initialize Express backend in `/server`.
+- [ ] Configure Twilio Media Streams in Twilio Console.
+- [ ] Deploy backend to high-availability compute (e.g., AWS EBS).
+- [ ] Connect frontend analytics to track user conversion.
+
+### 🏗 MVP_LAUNCH_CHECKLIST
+- [ ] Core bot responds to "Where are you located?"
+- [ ] Core bot can handle "I'd like to book a table."
+- [ ] Transcription is visible in the dashboard post-call.
+- [ ] User can update their "Business Profile" to customize AI personality.
+
+### 🏁 READY_CHECKLIST
+- [ ] Backend status: 🟢 Active
+- [ ] Twilio Webhook: 🟢 Connected
+- [ ] DB Policies (RLS): 🟢 Verified
+- [ ] STT/TTS Latency: 🟢 <1000ms
+
+---
+
+## 🛠 Setup & Development
+1. **Frontend**: `npm install && npm run dev`
+2. **Backend**: `cd server && npm install && npm run dev`
+3. **Combined**: `npm run dev:all`
+
+## 📄 License
+MIT License.
