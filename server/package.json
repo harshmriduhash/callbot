@@ -1,0 +1,23 @@
+{
+    "name": "callbot-ai-server",
+    "version": "1.0.0",
+    "description": "Backend server for CallBot AI telephony integration",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "dependencies": {
+        "@google/generative-ai": "^0.1.0",
+        "@supabase/supabase-js": "^2.38.4",
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "twilio": "^4.19.0",
+        "ws": "^8.14.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
