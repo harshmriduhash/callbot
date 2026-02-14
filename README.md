@@ -88,6 +88,19 @@ The product is now a fully functional MVP ready for real users.
 
 ---
 
+## 📈 Strategy & Growth
+Detailed plans for taking CallBot AI from zero to revenue.
+
+- [🎯 GTM Strategy](file:///Users/harshmriduhash/callbot/GTM_STRATEGY.md)
+- [🚀 Launch Strategy](file:///Users/harshmriduhash/callbot/LAUNCH_STRATEGY.md)
+- [👥 Getting First 20 Beta Customers](file:///Users/harshmriduhash/callbot/BETA_CUSTOMERS_20.md)
+- [📈 Scaling to 100+ Users](file:///Users/harshmriduhash/callbot/SCALING_100_USERS.md)
+- [✨ Marketing & Branding](file:///Users/harshmriduhash/callbot/MARKETING_AND_BRANDING.md)
+- [🗓 45-Day Roadmap](file:///Users/harshmriduhash/callbot/ROADMAP_45_DAYS.md)
+- [🌐 Deployment Guide](file:///Users/harshmriduhash/callbot/DEPLOYMENT_GUIDE.md)
+
+---
+
 ## 🛠 Setup & Development
 1. **Frontend**: `npm install && npm run dev`
 2. **Backend**: `cd server && npm install && npm run dev`
