@@ -1,4 +1,6 @@
-const GEMINI_API_KEY = "AIzaSyD3j23woEWwDD37zfUNhg5xzrZbuZiM6PE";
+// In a real app, this should be an environment variable
+// For the demo/frontend, we'll try to use import.meta.env
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 
 interface BusinessInfo {
   company_name: string;
@@ -22,6 +24,13 @@ export const processCallWithGemini = async (
   transcript: string,
   businessInfo: BusinessInfo
 ): Promise<string> => {
+  // If no API key is present in frontend, we should ideally call our new backend
+  if (!GEMINI_API_KEY) {
+    console.warn("No Gemini API key found on frontend. Ensure VITE_GEMINI_API_KEY is set or use the backend proxy.");
+    // Placeholder logic or call to backend
+    return "I'm sorry, my AI processing is currently being configured. Please check back later.";
+  }
+
   try {
     const prompt = generateAIPrompt(businessInfo);
     const fullPrompt = `${prompt}\n\nCustomer said: "${transcript}"\n\nRespond appropriately:`;

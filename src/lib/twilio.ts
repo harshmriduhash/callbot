@@ -16,7 +16,7 @@ export interface CallData {
 
 export class TwilioWebhookHandler {
   private static instance: TwilioWebhookHandler;
-  
+
   static getInstance(): TwilioWebhookHandler {
     if (!TwilioWebhookHandler.instance) {
       TwilioWebhookHandler.instance = new TwilioWebhookHandler();
@@ -28,7 +28,7 @@ export class TwilioWebhookHandler {
     try {
       // Log the incoming call
       await this.logCall(callData, userId);
-      
+
       // Generate TwiML response for voice AI
       return this.generateTwiMLResponse(callData);
     } catch (error) {
@@ -54,8 +54,10 @@ export class TwilioWebhookHandler {
   }
 
   private generateTwiMLResponse(callData: CallData): string {
-    const webhookUrl = `${window.location.origin}/api/voice/stream`;
-    
+    // In production, this would be the public URL of your backend server
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || `${window.location.origin}`;
+    const webhookUrl = `${backendUrl}/twiml`;
+
     return `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Connect>
